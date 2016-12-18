@@ -1,0 +1,58 @@
+version: "2"
+services:
+  data:
+    build: ./docker/data
+    container_name: data
+    volumes:
+      - ./data/html:/var/www/html
+      - /var/lib/mysql
+
+  web:
+    build: ./docker/web
+    container_name: web
+    volumes_from:
+      - data
+    ports:
+      - "10080:80"
+      - "10443:443"
+    links:
+      - db
+      - memcached
+#      - elasticsearch
+
+  composer:
+    build: ./docker/composer
+    container_name: composer
+    volumes_from:
+      - data
+    links:
+      - db
+      - memcached
+    working_dir: /var/www/html
+
+  db:
+    build: ./docker/db
+    container_name: db
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      # If you want to set mysql user manually, remove these comments:
+      # MYSQL_USER: user
+      # MYSQL_PASSWORD: password
+      MYSQL_DATABASE: app
+      MYSQL_HOST: ""
+    mem_limit: 1000000000
+
+  memcached:
+    build: ./docker/memcached
+    container_name: memcached
+
+#  npm:
+#    build: ./docker/npm
+#    container_name: npm
+#    volumes_from:
+#      - data
+#  elasticsearch:
+#    image: "elasticsearch:2.4"
+#    container_name: elasticsearch
