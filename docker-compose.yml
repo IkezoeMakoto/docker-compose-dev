@@ -5,7 +5,7 @@ services:
     container_name: data
     volumes:
       - ./data/html:/var/www/html
-      - /var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
 
   web:
     build: ./docker/web
