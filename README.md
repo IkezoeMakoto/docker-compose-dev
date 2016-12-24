@@ -9,7 +9,7 @@
 ## 使い方
 ### 開発環境の作成
 ```
-git https://github.com/IkezoeMakoto/docker-compose-dev
+git clone https://github.com/IkezoeMakoto/docker-compose-dev
 cd docker-compose-dev
 docker-compose up -d
 ```
