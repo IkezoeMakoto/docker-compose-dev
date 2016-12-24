@@ -31,8 +31,13 @@ services:
     working_dir: /var/www/html
 
   db:
-    build: ./docker/db
+    build:
+      context: ./docker/db
+      args:
+        mysql_root_password: root
     container_name: db
+    volumes_from:
+      - data
     ports:
       - "13306:3306"
     environment:
