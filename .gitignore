@@ -1,0 +1,8 @@
+/.idea/
+
+/data/html/*
+!/data/html/index.html
+!/data/html/test.php
+
+/data/mysql/*
+!/data/mysql/empty

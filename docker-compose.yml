@@ -33,8 +33,6 @@ services:
   db:
     build:
       context: ./docker/db
-      args:
-        mysql_root_password: root
     container_name: db
     volumes_from:
       - data
@@ -47,6 +45,7 @@ services:
       # MYSQL_PASSWORD: password
       MYSQL_DATABASE: app
       MYSQL_HOST: ""
+      TZ: "Japan"
     mem_limit: 1000000000
 
   memcached:
