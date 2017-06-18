@@ -4,6 +4,7 @@
 * PHP 7.1
 * MySQL 5.7
 * memcached 1.4
+* apache
 
 を使った開発環境の構築
 ## 使い方
@@ -11,7 +12,7 @@
 ```
 git clone https://github.com/IkezoeMakoto/docker-compose-dev
 cd docker-compose-dev
-docker-compose up -d
+make up
 ```
 
 上記コマンドを実行することで
@@ -19,18 +20,15 @@ docker-compose up -d
 * db : mysql5.7 コンテナ
 * memcached : memcached1.4 コンテナ
 * composer : composer コンテナ
-* npm : npm コンテナ
 
 のコンテナが作成されます。
 
 ### composer or npm コマンドの実行
 ```
 # composer で cakephp アプリ作る場合
-docker-compose run --rm composer create-project --prefer-dist cakephp/app myapp
-# npm コマンド
-docker-compose run --rm npm install
+make composer CMD='create-project --prefer-dist cakephp/app myapp'
 ```
-上記コマンドを実行することで composer, npm 実行用コンテナが立ち上がります。
+上記コマンドを実行することで composer 実行用コンテナが立ち上がります。
 
 ### 開発環境の停止, 開始
 開発環境を停止, 開始する方法は以下の通りです。
@@ -38,8 +36,9 @@ docker-compose run --rm npm install
 ```
 cd docker-compose-dev
 # 停止
-docker-compose stop
-docker ps -a
+make down
+# 確認
+make CMD=ps
 ---
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS                      PORTS               NAMES
 46b281982b04        dockercomposedev_composer    "composer --help"        51 minutes ago      Exited (0) 51 minutes ago                       composer
@@ -48,8 +47,9 @@ d717fdc92af9        dockercomposedev_data        "sh"                     51 min
 1b510235dbcb        dockercomposedev_memcached   "docker-entrypoint.sh"   51 minutes ago      Exited (0) 7 seconds ago                        memcached
 ---
 # 開始
-docker-compose start
-docker ps
+make up
+# 確認
+make CMD=ps
 ---
 docker ps -a
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS                      PORTS                                           NAMES
@@ -64,7 +64,15 @@ ffbc294dea16        dockercomposedev_db          "docker-entrypoint.sh"   53 min
 不要になった開発環境は削除しましょう。
 ```
 # 不要コンテナの削除
-docker-compose down
+make down
+```
+
+### logの確認
+```
+# 全部のログを確認
+make CMD=logs
+# web のログを確認
+make CMD='logs web'
 ```
 
 ## 構成
@@ -91,7 +99,9 @@ docker-compose down
 │   │   └── Dockerfile
 │   └── web -> web サーバ用コンテナ
 │       └── Dockerfile
+├── Makefile
 └── docker-compose.yml -> compose 用設定ファイル
+
 ```
 
 ## やり残していること
