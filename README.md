@@ -5,6 +5,7 @@
 * MySQL 5.7
 * memcached 1.4
 * apache
+* yarn (node 8.1)
 
 を使った開発環境の構築
 ## 使い方
@@ -20,15 +21,18 @@ make up
 * db : mysql5.7 コンテナ
 * memcached : memcached1.4 コンテナ
 * composer : composer コンテナ
+* yarn : yarn コンテナ
 
 のコンテナが作成されます。
 
-### composer or npm コマンドの実行
+### composer or yarn コマンドの実行
 ```
 # composer で cakephp アプリ作る場合
 make composer CMD='create-project --prefer-dist cakephp/app myapp'
+# yarn コマンドを実行
+make yarn CMD='install'
 ```
-上記コマンドを実行することで composer 実行用コンテナが立ち上がります。
+上記コマンドを実行することで composer or yarn 実行用コンテナが立ち上がります。
 
 ### 開発環境の停止, 開始
 開発環境を停止, 開始する方法は以下の通りです。

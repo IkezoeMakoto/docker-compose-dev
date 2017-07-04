@@ -4,14 +4,15 @@ CMD = -v
 
 PHP = $(DOCKER_RUN) web
 COMPOSER = $(DOCKER_RUN) composer
+YARN = $(DOCKER_RUN) yarn
 
-.PHONY: default up down php composer
+.PHONY: default up down php composer yarn
 
 default:
 	$(DOCKER) $(CMD)
 
 up:
-	$(DOCKER) up -d
+	$(DOCKER) up -d --force-recreate --build
 
 down:
 	$(DOCKER) down
@@ -21,3 +22,6 @@ php:
 
 composer:
 	$(COMPOSER) $(CMD)
+
+yarn:
+	$(YARN) $(CMD)

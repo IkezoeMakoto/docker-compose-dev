@@ -52,11 +52,12 @@ services:
     build: ./docker/memcached
     container_name: memcached
 
-#  npm:
-#    build: ./docker/npm
-#    container_name: npm
-#    volumes_from:
-#      - data
+  yarn:
+    build: ./docker/yarn
+    container_name: yarn
+    volumes_from:
+      - data
+
 #  elasticsearch:
 #    image: "elasticsearch:2.4"
 #    container_name: elasticsearch
