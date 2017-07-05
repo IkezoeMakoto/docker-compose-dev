@@ -32,7 +32,9 @@ services:
 
   db:
     build:
-      context: ./docker/db
+      # You can switch as needed
+      # context: ./docker/db/mariadb
+      context: ./docker/db/mysql
     container_name: db
     volumes_from:
       - data

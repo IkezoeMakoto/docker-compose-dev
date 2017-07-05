@@ -1,11 +1,17 @@
 # docker-compose-dev
 開発環境構築を Docker Compose を使って手軽に作成するためのものです。
 ## できること
-* PHP 7.1
-* MySQL 5.7
-* memcached 1.4
-* apache
-* yarn (node 8.1)
+* 言語
+    * PHP 7.1
+* DB
+    * MySQL 5.7
+    * MariaDB 10.3
+* Cache
+    * memcached 1.4
+* WEB
+    * apache
+* node パッケージ管理
+    * yarn (node 8.1)
 
 を使った開発環境の構築
 ## 使い方
