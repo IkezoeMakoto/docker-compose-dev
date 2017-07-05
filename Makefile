@@ -23,5 +23,15 @@ php:
 composer:
 	$(COMPOSER) $(CMD)
 
+start:
+	$(DOCKER) start 
+
+stop:
+	$(DOCKER) stop
+
+restart:
+	$(DOCKER) restart
+
 yarn:
 	$(YARN) $(CMD)
+
