@@ -6,7 +6,7 @@ PHP = $(DOCKER_RUN) web
 COMPOSER = $(DOCKER_RUN) composer
 YARN = $(DOCKER_RUN) yarn
 
-.PHONY: default up down php composer yarn
+.PHONY: default up down php composer start stop restart yarn
 
 default:
 	$(DOCKER) $(CMD)
