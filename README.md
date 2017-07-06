@@ -112,7 +112,10 @@ make CMD='logs web'
 │   ├── data -> data 永続化用コンテナ
 │   │   └── Dockerfile
 │   ├── db -> db 用コンテナ (MySQL)
-│   │   └── Dockerfile
+│   │   ├── mysql -> mysql用ディレクトリ
+│   │   │   └── Dockerfile
+│   │   └── mariadb -> mariadb用ディレクトリ
+│   │   │   └── Dockerfile
 │   ├── memcached -> memcached 用コンテナ
 │   │   └── Dockerfile
 │   ├── npm -> npm 用コンテナ
@@ -127,5 +130,4 @@ make CMD='logs web'
 ## やり残していること
 * log の永続化
 * docker registry に登録して image から compose
-* MariaDB も選択できるようにする
 * コンテナ名、ポートをコマンドラインから指定できるようにする
