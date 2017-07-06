@@ -70,6 +70,16 @@ d717fdc92af9        dockercomposedev_data        "sh"                     53 min
 ffbc294dea16        dockercomposedev_db          "docker-entrypoint.sh"   53 minutes ago      Up 9 seconds                0.0.0.0:13306->3306/tcp                         db
 ---
 ```
+### 一時的にコンテナを停止する
+```
+# 一時的にコンテナを停止しておく
+make stop
+# 一時的に停止していたコンテナを再開する
+make start
+# コンテナを再起動する
+make restart
+```
+
 ### 開発環境の削除
 不要になった開発環境は削除しましょう。
 ```
