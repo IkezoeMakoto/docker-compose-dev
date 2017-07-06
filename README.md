@@ -128,6 +128,4 @@ make CMD='logs web'
 ```
 
 ## やり残していること
-* log の永続化
-* docker registry に登録して image から compose
-* コンテナ名、ポートをコマンドラインから指定できるようにする
+[issue](https://github.com/IkezoeMakoto/docker-compose-dev/issues)
