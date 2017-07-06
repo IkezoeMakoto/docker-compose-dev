@@ -70,6 +70,16 @@ d717fdc92af9        dockercomposedev_data        "sh"                     53 min
 ffbc294dea16        dockercomposedev_db          "docker-entrypoint.sh"   53 minutes ago      Up 9 seconds                0.0.0.0:13306->3306/tcp                         db
 ---
 ```
+### 一時的にコンテナを停止する
+```
+# 一時的にコンテナを停止しておく
+make stop
+# 一時的に停止していたコンテナを再開する
+make start
+# コンテナを再起動する
+make restart
+```
+
 ### 開発環境の削除
 不要になった開発環境は削除しましょう。
 ```
@@ -102,7 +112,10 @@ make CMD='logs web'
 │   ├── data -> data 永続化用コンテナ
 │   │   └── Dockerfile
 │   ├── db -> db 用コンテナ (MySQL)
-│   │   └── Dockerfile
+│   │   ├── mysql -> mysql用ディレクトリ
+│   │   │   └── Dockerfile
+│   │   └── mariadb -> mariadb用ディレクトリ
+│   │   │   └── Dockerfile
 │   ├── memcached -> memcached 用コンテナ
 │   │   └── Dockerfile
 │   ├── npm -> npm 用コンテナ
@@ -115,7 +128,4 @@ make CMD='logs web'
 ```
 
 ## やり残していること
-* log の永続化
-* docker registry に登録して image から compose
-* MariaDB も選択できるようにする
-* コンテナ名、ポートをコマンドラインから指定できるようにする
+[issue](https://github.com/IkezoeMakoto/docker-compose-dev/issues)
