@@ -17,7 +17,7 @@ services:
       - "10443:443"
     links:
       - db
-      - memcached
+      - cache
 #      - elasticsearch
 
   composer:
@@ -27,7 +27,7 @@ services:
       - data
     links:
       - db
-      - memcached
+      - cache
     working_dir: /var/www/html
 
   db:
@@ -50,9 +50,10 @@ services:
       TZ: "Japan"
     mem_limit: 1000000000
 
-  memcached:
-    build: ./docker/memcached
-    container_name: memcached
+  cache:
+    build: ./docker/cache/redis
+    #build: ./docker/cache/memcached
+    container_name: cache
 
   yarn:
     build: ./docker/yarn
