@@ -47,7 +47,7 @@ services:
       # MYSQL_PASSWORD: password
       MYSQL_DATABASE: app
       MYSQL_HOST: ""
-      TZ: "Japan"
+      TZ: "Asia/Tokyo"
     mem_limit: 1000000000
 
   memcached:
