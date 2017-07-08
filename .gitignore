@@ -5,4 +5,4 @@
 !/data/html/test.php
 
 /data/mysql/*
-!/data/mysql/empty
+!/data/mysql/.gitkeep
