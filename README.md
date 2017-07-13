@@ -115,9 +115,12 @@ make CMD='logs web'
 │   │   ├── mysql -> mysql用ディレクトリ
 │   │   │   └── Dockerfile
 │   │   └── mariadb -> mariadb用ディレクトリ
-│   │   │   └── Dockerfile
-│   ├── memcached -> memcached 用コンテナ
-│   │   └── Dockerfile
+│   │       └── Dockerfile
+│   ├── cache -> cache 用コンテナ
+│   │   ├── memcached -> memcached 用ディレクトリ
+│   │   │   └── Dockerfile
+│   │   └── redis -> redis 用ディレクトリ
+│   │       └── Dockerfile
 │   ├── npm -> npm 用コンテナ
 │   │   └── Dockerfile
 │   └── web -> web サーバ用コンテナ
