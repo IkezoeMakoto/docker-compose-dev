@@ -2,14 +2,14 @@ version: "2"
 services:
   data:
     build: ./docker/data
-    container_name: data
+    container_name: ${PREFIX_NAME}_data
     volumes:
       - ./data/html:/var/www/html
       - ./data/mysql:/var/lib/mysql
 
   web:
     build: ./docker/web
-    container_name: web
+    container_name: ${PREFIX_NAME}_web
     volumes_from:
       - data
     ports:
@@ -22,7 +22,7 @@ services:
 
   composer:
     build: ./docker/composer
-    container_name: composer
+    container_name: ${PREFIX_NAME}_composer
     volumes_from:
       - data
     links:
@@ -35,7 +35,7 @@ services:
       # You can switch as needed
       # context: ./docker/db/mariadb
       context: ./docker/db/mysql
-    container_name: db
+    container_name: ${PREFIX_NAME}_db
     volumes_from:
       - data
     ports:
@@ -53,11 +53,11 @@ services:
   cache:
     build: ./docker/cache/redis
     #build: ./docker/cache/memcached
-    container_name: cache
+    container_name: ${PREFIX_NAME}_cache
 
   yarn:
     build: ./docker/yarn
-    container_name: yarn
+    container_name: ${PREFIX_NAME}_yarn
     volumes_from:
       - data
 
