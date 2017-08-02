@@ -8,10 +8,13 @@ YARN = $(DOCKER_RUN) yarn
 
 .PHONY: default up down php composer start stop restart yarn
 
+.env:
+	cp .env.example .env
+
 default:
 	$(DOCKER) $(CMD)
 
-up:
+up: .env
 	$(DOCKER) up -d --force-recreate --build
 
 down:
