@@ -8,10 +8,10 @@ services:
       - ./data/mysql:/var/lib/mysql
 
   web:
-    build:
-      context: ./docker/apache
-      args:
-        - PHP_SOCKET=php:9000
+    build: ./docker/web
+    env_file: .env
+    environment:
+      PHP_SOCKET: php:9000
     container_name: ${PREFIX_NAME}_web
     volumes_from:
       - data
@@ -20,7 +20,6 @@ services:
       - "${HTTPS_PORT}:443"
     links:
       - php
-#      - elasticsearch
 
   php:
     build: ./docker/php
@@ -73,7 +72,3 @@ services:
     container_name: ${PREFIX_NAME}_yarn
     volumes_from:
       - data
-
-#  elasticsearch:
-#    image: "elasticsearch:2.4"
-#    container_name: elasticsearch
