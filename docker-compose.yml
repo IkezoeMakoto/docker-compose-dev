@@ -9,6 +9,9 @@ services:
 
   web:
     build: ./docker/web
+    env_file: .env
+    environment:
+      PHP_SOCKET: php:9000
     container_name: ${PREFIX_NAME}_web
     volumes_from:
       - data
@@ -16,9 +19,18 @@ services:
       - "${HTTP_PORT}:80"
       - "${HTTPS_PORT}:443"
     links:
+      - php
+
+  php:
+    build: ./docker/php
+    container_name: ${PREFIX_NAME}_php
+    volumes_from:
+      - data
+    expose:
+      - 9000
+    links:
       - db
       - cache
-#      - elasticsearch
 
   composer:
     build: ./docker/composer
@@ -61,7 +73,3 @@ services:
     container_name: ${PREFIX_NAME}_yarn
     volumes_from:
       - data
-
-#  elasticsearch:
-#    image: "elasticsearch:2.4"
-#    container_name: elasticsearch
